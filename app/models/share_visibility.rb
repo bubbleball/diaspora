@@ -6,10 +6,10 @@ class ShareVisibility < ActiveRecord::Base
   belongs_to :contact
   belongs_to :shareable, :polymorphic => :true
 
-  scope :for_a_users_contacts, lambda { |user| 
+  scope :for_a_users_contacts, lambda { |user|
     where(:contact_id => user.contacts.map {|c| c.id})
   }
-  scope :for_contacts_of_a_person, lambda { |person| 
+  scope :for_contacts_of_a_person, lambda { |person|
     where(:contact_id => person.contacts.map {|c| c.id})
   }
   validate :not_public
